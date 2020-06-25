@@ -1,4 +1,5 @@
 const express = require('express');
+
 const hbs = require('hbs');
 const path = require('path');
 const PunkAPIWrapper = require('punkapi-javascript-wrapper');
@@ -21,10 +22,10 @@ app.get('/', (req, res) => res.render('index'));
 app.get('/beers', (req, res) => {
   punkAPI
     .getBeers()
-    .then((beersFromAPI) => {
+    .then(beersFromAPI => {
       res.render('beers', { beer: beersFromAPI });
     })
-    .catch((err) => console.log(err));
+    .catch(err => console.log(err));
 });
 
 app.get('/beer/:id', (req, res) => {
@@ -32,20 +33,20 @@ app.get('/beer/:id', (req, res) => {
   // const id = req.params.id;
   punkAPI
     .getBeer(req.params.id)
-    .then((beerFromAPI) => {
+    .then(beerFromAPI => {
       res.render('beer', { beer: beerFromAPI[0] });
     })
-    .catch((err) => console.log(err));
+    .catch(err => console.log(err));
 });
 
 app.get('/random-beer', (req, res) => {
   punkAPI
     .getRandom()
-    .then((randomBeerFromAPI) => {
+    .then(randomBeerFromAPI => {
       // console.log(randomBeerFromAPI[0]);
       res.render('beer', { beer: randomBeerFromAPI[0] });
     })
-    .catch((err) => console.log(err));
+    .catch(err => console.log(err));
 });
 
 app.listen(3000, () => console.log('🏃‍ on port 3000'));
